@@ -1,0 +1,162 @@
+SELECT * FROM item WHERE Color = 'red'
+SELECT * FROM item WHERE Color = 'red' AND Size= 'small'
+INSERT INTO item  VALUES ('p21', 'white', 'large', '35')
+UPDATE item SET Color = 'blue' WHERE ProdID = 'p1'
+SELECT 
+    ( SELECT COUNT( Color ) FROM item WHERE Color = 'red' ) AS `Red`, 
+    ( SELECT COUNT( Color ) FROM item WHERE Color = 'blue'  ) AS `Blue`,
+    ( SELECT COUNT( Color ) FROM item WHERE Color = 'white'  ) AS `White`
+
+SELECT Color,count(*) Color from cars Group by Color order by Color
+
+SELECT Size,count(*) Size from food Group by Size order by Size 
+
+SELECT COUNT(Size) FROM food
+
+SELECT COUNT(Kind) FROM food WHERE Kind = 'chicken hamburger'in (SELECT COUNT(Size) FROM food WHERE Size = 'small') 
+
+SELECT COUNT(*) FROM food WHERE Kind = '$kind' and Size = '$size' and WaitTime = '$waittime' and Price = '$price'
+
+SELECT COUNT(Size) FROM food WHERE Size = 'small' 
+
+SELECT * FROM food WHERE Kind = 'beef hamburger' AND Kind = 'chicken hamburger'
+
+SELECT * FROM food WHERE Kind = 'beef hamburger' or Kind = 'chicken hamburger'
+
+
+
+	$row=mysqli_fetch_array($res1); 
+    echo "(".$row[0].")";
+
+
+
+<a href="Assign7(update).php">Update</a>
+
+
+
+
+
+
+
+
+
+
+
+DELETE FROM `item` WHERE ProdID = 'p21'
+
+DELETE FROM `food` WHERE FoodID = 's'
+
+$sql2 = mysqli_query($conn,"SELECT * FROM food WHERE Kind = '$fbf' or Kind = '$fch' or Kind = '$fbfr' 
+or Kind = '$fcfr' or Kind = '$fbn' AND Size='$ssmall' or Size='$smedium' or Size='$slarge' and 
+WaitTime = '$wm10' or WaitTime = '$wm12' or WaitTime = '$wm14' or WaitTime = '$wm16' AND Price = '$price5' 
+or Price = '$price15' or Price = '$price35'");
+
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Kind = '$kind' and Size = '$size' 
+and WaitTime = '$waittime' and Price = '$price'");
+
+else if ($kind == null && $size == null){
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Kind = '$kind' and Size = '$size' 
+and WaitTime = '$waittime' and Price = '$price'");}
+
+global $fbf=$fch=$fbfr=$fcfr=$fbn=$ssmall=$smedium=$slarge=$wm10=$wm12=$wm14=$wm16=$price5=$price15=$price35='';
+
+
+
+if($fbf== "beef hamburger" && $ssmall == "small" && $wm10 =="10 mins" && $price5 == "5" ){
+showResult6();	
+}
+
+else if ($fbf== "beef hamburger" && $ssmall == "small" && $wm10 =="10 mins" && $price5 == "15" ){
+showResult7();
+}
+
+else if ($fbf== "beef hamburger" && $ssmall == "small" && $wm10 =="10 mins" && $price5 == "35" ){
+showResult8();
+}
+
+
+if ($kind == null){
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Size = '$size' 
+and WaitTime = '$waittime' and Price = '$price'");}
+
+else if ($size == null){
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Kind = '$kind' 
+and WaitTime = '$waittime' and Price = '$price'");}
+
+else if ($waittime == null){
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Size = '$size' 
+and Price = '$price'");	}
+
+else if ($price == null){
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Size = '$size' 
+and WaitTime = '$waittime'");}
+
+function showResult2(){
+	$fbf=$fch=$fbfr=$fcfr=$fbn=$ssmall=$smedium=$slarge=$wm10=$wm12=$wm14=$wm16=$price5=$price15=$price35='';
+ if (isset($_POST["c1"]))
+     $fbf=$_POST['c1'];
+ 
+ if (isset($_POST["c2"]))
+	 $fch=$_POST['c2'];
+ 
+ if (isset($_POST["c3"]))
+	 $fbfr=$_POST['c3'];
+ 
+ if (isset($_POST["c4"]))
+	 $fcfr=$_POST['c4'];
+ 
+ if (isset($_POST["c5"]))
+	 $fbn=$_POST['c5'];
+ 
+ if (isset($_POST["c6"]))
+	 $ssmall=$_POST['c6'];
+ 
+ if (isset($_POST["c7"]))
+	 $smedium=$_POST['c7'];
+ 
+ if (isset($_POST["c8"]))
+	 $slarge=$_POST['c8'];
+ 
+ if (isset($_POST["c9"]))
+	 $wm10=$_POST['c9'];
+ 
+ if (isset($_POST["c10"]))
+	 $wm12=$_POST['c10'];
+ 
+ if (isset($_POST["c11"]))
+	 $wm14=$_POST['c11'];
+ 
+ if (isset($_POST["c12"]))
+	 $wm16=$_POST['c12'];
+ 
+ if (isset($_POST["c13"]))
+	 $price5=$_POST['c13'];
+ 
+ if (isset($_POST["c14"]))
+	 $price15=$_POST['c14'];
+ 
+ if (isset($_POST["c15"]))
+	 $price35=$_POST['c15'];
+$server_name="localhost";
+$user_name="root";
+$user_password="";
+$database_name="collection";
+$table_name="food";
+$conn=new mysqli($server_name,$user_name,$user_password,$database_name);	
+$res = mysqli_query($conn,"SELECT * FROM food WHERE Kind = '$fbf' or Kind = '$fch' or Kind = '$fbfr' 
+or Kind = '$fcfr' or Kind = '$fbn'");
+echo "Search Result List£º";
+echo "<table border=1>";    
+echo "<tr><td>Kind</td><td>Size</td><td>WaitTime</td><td>Price</td></tr>";
+while($row=mysqli_fetch_array($res)) 
+{
+ echo "<tr>";
+ echo "<td>".$row["Kind"]." </td>";  
+ echo "<td>".$row["Size"]." </td>";   
+ echo "<td>".$row["WaitTime"]." </td>";  
+ echo "<td>".$row["Price"]." </td>";  
+ echo "</tr>";
+}
+echo "</table>";
+}
+
